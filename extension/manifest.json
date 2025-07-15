@@ -5,19 +5,12 @@
   "description": "Scans cookies and sends them to a server.",
   "permissions": [
     "cookies",
-    "activeTab",
-    "scripting"
+    "tabs"
   ],
   "host_permissions": [
     "<all_urls>"
   ],
   "background": {
     "service_worker": "background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
-  ]
+  }
 }
