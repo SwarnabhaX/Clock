@@ -1,6 +1,6 @@
 # Cookie Scanner Extension and Server
 
-This project contains a browser extension that automatically scans for cookies on web pages and a Python server that receives the cookie data.
+This project contains a browser extension that automatically scans for cookies whenever they are changed and a Python server that receives the cookie data.
 
 ## Project Structure
 
@@ -33,7 +33,7 @@ This project contains a browser extension that automatically scans for cookies o
     - Enable "Developer mode".
     - Click "Load unpacked" and select the `extension` directory.
 
-The extension will now automatically scan for cookies on every page you visit and send them to the server.
+The extension will now automatically send cookie data to the server whenever a cookie is set or changed.
 
 ### Important Notes
 
